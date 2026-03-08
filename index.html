@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message-Box</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"> 
+</head>
+<body class="flex items-center justify-center h-screen" style="background-image: url(./image2.jpg); background-size: cover;">
+    <div class="bg-white p-6 rounded-lg shadow-2xl w-100">
+        <h2 class="text-2xl font-extrabold text-center mb-4">Message</h2>
+        <textarea id="message" maxlength="200"  placeholder="Type something......" class="w-full h-32 p-3 border rounded-md focus:outline-none focus:ring-2 resize-none relative"></textarea>
+        <p id="counter" class="relative text-sm text-gray-500 left-71 bottom-7">0/200</p>
+        <p id="error" class="text-sm text-gray-600 -mt-6 mb-4"><i class="fa-solid fa-triangle-exclamation error-icon" style="color:gray;"></i>Maximum 200 Characters!!</p>
+       
+        <div class="flex justify-between">
+            <div>
+        
+        <button id="btn1" class="p-2 rounded-3xl bg-black text-white mr-1"><i
+                    class="fa-regular fa-copy mr-1"></i>Copy</button>
+            <button id="btn2" class="p-2 rounded-3xl bg-black text-white"><i
+                    class="fa-solid fa-eraser mr-1"></i>Clear</button></div>
+        <div>
+        <button id="submit" class="p-2 rounded-3xl bg-black text-white">Submit</button></div></div>
+        <p id="txt"></p>
+    </div>
+    
+<script>
+        var message = document.getElementById("message")
+        var btn1 = document.getElementById("btn1")
+        var btn2 = document.getElementById("btn2")
+        var txt = document.getElementById("txt")
+        var counter =document.getElementById("counter")
+        var submit=document.getElementById("submit")
+        var error=document.getElementById("error")
+
+        message.addEventListener('input', function () {
+    var count = message.value.length
+    if (count > 200) {
+        message.value = message.value.slice(0,200)
+        count = 200
+    }
+
+    counter.textContent = count + "/200"
+})
+        
+        btn2.addEventListener('click',function(){
+            message.value=""
+            counter.textContent="0/200"
+        })
+
+        btn1.addEventListener("click",function(){
+            txt.textContent="Message Copied!"
+            txt.style.color="Green"
+
+            setTimeout(function(){
+                txt.textContent=""
+            },2000);
+        })
+        submit.addEventListener("click",function(){
+            alert("Your Message is submitted!                                                                  Thank you for your response!!")
+            message.value=""
+            counter.textContent="0/200"
+        })
+
+        
+
+    </script>
+</body>
+</html>
